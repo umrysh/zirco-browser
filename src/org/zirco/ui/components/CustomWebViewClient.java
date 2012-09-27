@@ -26,6 +26,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -35,6 +36,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.webkit.WebView.HitTestResult;
 import android.widget.EditText;
+
+import android.util.Log;
 
 /**
  * Convenient extension of WebViewClient.
@@ -234,5 +237,24 @@ public class CustomWebViewClient extends WebViewClient {
 				url.startsWith("itms://") ||
 				url.startsWith("itpc://");
 	}
+	
+	@Override
+    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            Log.i("WEB_VIEW_TEST", "error code:" + errorCode);
+            
+            if (errorCode == -6)
+            {
+            	Log.i("WEB_VIEW_TEST", "Setting reload in 20s");
+	            final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+	  				@Override
+	  				public void run() {
+	    				//Reload after 20s
+	  					mMainActivity.reloadThePage();
+	  				}
+				}, 20000);
+            }
+            super.onReceivedError(view, errorCode, description, failingUrl);
+    }
 
 }

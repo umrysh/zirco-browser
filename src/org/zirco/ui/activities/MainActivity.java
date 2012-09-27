@@ -1974,11 +1974,11 @@ public class MainActivity extends Activity implements IToolbarsContainer, OnTouc
 		
 		updateGoButton();
 		
-		setToolbarsVisibility(true);
+		setToolbarsVisibility(false);
 	}
 	
 	public void onUrlLoading(String url) {
-		setToolbarsVisibility(true);
+		setToolbarsVisibility(false);
 	}
 	
 	public void onMailTo(String url) {
@@ -2011,6 +2011,10 @@ public class MainActivity extends Activity implements IToolbarsContainer, OnTouc
 	
 	public void setHttpAuthUsernamePassword(String host, String realm, String username, String password) {
 		mCurrentWebView.setHttpAuthUsernamePassword(host, realm, username, password);
+	}
+	
+	public void reloadThePage() {
+		mCurrentWebView.reload();
 	}
 	
 	@Override
