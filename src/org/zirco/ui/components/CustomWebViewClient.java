@@ -242,8 +242,8 @@ public class CustomWebViewClient extends WebViewClient {
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             Log.i("WEB_VIEW_TEST", "error code:" + errorCode);
             
-            if (errorCode == -6 || errorCode == -8)
-            {
+            //if (errorCode == -6 || errorCode == -8)
+            //{
             	Log.i("WEB_VIEW_TEST", "Setting reload in 20s");
 	            final Handler handler = new Handler();
 				handler.postDelayed(new Runnable() {
@@ -253,7 +253,7 @@ public class CustomWebViewClient extends WebViewClient {
 	  					mMainActivity.reloadThePage();
 	  				}
 				}, 20000);
-            }
+            //}
             super.onReceivedError(view, errorCode, description, failingUrl);
     }
 
