@@ -15,6 +15,9 @@
 
 package org.zirco.ui.activities;
 
+import android.app.KeyguardManager;
+import android.app.KeyguardManager.KeyguardLock;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -212,7 +215,12 @@ public class MainActivity extends Activity implements IToolbarsContainer, OnTouc
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);              
+        super.onCreate(savedInstanceState);   
+
+        // Disable Lock Screen
+		KeyguardManager keyguardManager = (KeyguardManager)getSystemService(Activity.KEYGUARD_SERVICE);
+		KeyguardLock lock = keyguardManager.newKeyguardLock(KEYGUARD_SERVICE);
+		lock.disableKeyguard();           
 
         INSTANCE = this;
         
@@ -2122,5 +2130,4 @@ public class MainActivity extends Activity implements IToolbarsContainer, OnTouc
         }
 
     }
-	
 }
