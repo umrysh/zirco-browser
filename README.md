@@ -8,6 +8,8 @@ This is my fork of the zirco-browser.
 Features Added to the original code:
 * If the page timed out, wait 20 seconds, then refresh the page.
 * Hide the address bar when loading the page.
+* Start browser on boot.
+* Remove the lock screen when starting.
 
 The reason I needed the modifications above is because I have an application which is a set of .php web pages that redirect from one to the next every 10 seconds. When the page would redirect the address bar would appear, which took away from the whole appearance of seamless switching.
 
